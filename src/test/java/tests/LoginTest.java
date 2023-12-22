@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MenuBarPage;
@@ -10,11 +11,14 @@ import util.TestData;
 public class LoginTest extends BaseTest {
     MenuBarPage menuBarPage;
     LoginPage loginPage;
+    @BeforeTest
+    public void beforeSignUpTest(){
+        menuBarPage=getMenuBarPage();
+        loginPage= menuBarPage.verifyLoginBtn();
+    }
 
     @Test(dataProvider = "LoginData", dataProviderClass = TestData.class, priority = 1)
     public void signUpTest(String mail, String psw){
-        menuBarPage = getMenuBarPage();
-        loginPage = menuBarPage.verifyLoginBtn();
         loginPage.changeToSignUpOption();
         loginPage.fillSignUp(mail, psw);
         Assert.assertTrue(loginPage.verifySignUp());

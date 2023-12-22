@@ -12,9 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.MenuBarPage;
 import pages.SwipePage;
@@ -25,7 +23,7 @@ public class BaseTest {
     HomePage homePage;
 
 
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -58,7 +56,7 @@ public class BaseTest {
     }
     public SwipePage getSwipePage(){return new SwipePage(driver);}
 
-    @AfterClass
+    @AfterTest
     public void tearDown(){
         if(driver != null){
             driver.quit();
